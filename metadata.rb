@@ -9,5 +9,5 @@ version          '0.1.0'
 recipe           'unicorn-ng', 'Configures unicorn.rb and sets up a service according to attributes'
 recipe           'unicorn-ng::install', 'Installs bundler and unicorn using rubygems'
 
-supports         'ubuntu', '>= 10.04'
+supports         'ubuntu', '>= 12.04'
 supports         'debian', '>= 6.0'
