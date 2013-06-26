@@ -1,0 +1,133 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          unicorn
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the unicorn web server
+# Description:       starts unicorn using start-stop-daemon
+### END INIT INFO
+
+export BUNDLE_GEMFILE=<%= @bundle_gemfile %>
+DAEMON=<%= @bundle %>
+DAEMON_OPTS="exec unicorn -D -E <%= @environment %> -c <%= @config %>"
+PIDFILE=<%= @pidfile %>
+USER=<%= @user %>
+LANG=<%= @locale %>
+LC_ALL=<%= @locale %>
+LANGUAGE=<%= @locale %>
+
+NAME=unicorn
+DESC=unicorn
+
+. /lib/lsb/init-functions
+
+check_daemon() {
+  if [ ! -x $DAEMON ]; then
+    log_action_msg "$DAEMON not found" || true
+    log_end_msg 1 || false
+    exit 1
+  fi
+}
+
+case "$1" in
+  start)
+    log_daemon_msg "Starting $NAME" || true
+    check_daemon
+
+    if [ -s $PIDFILE ] && kill -0 $(cat $PIDFILE) > /dev/null 2>&1; then
+      log_action_msg "apparently already running" || true
+      log_end_msg 0 || true
+      exit 0
+    fi
+
+    if start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $USER --exec $DAEMON -- $DAEMON_OPTS; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+    ;;
+
+  stop)
+    log_daemon_msg "Stopping $NAME" || true
+
+    if start-stop-daemon --stop --quiet --pidfile $PIDFILE --chuid $USER; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+    ;;
+
+  restart)
+    if [ -s $PIDFILE ] && kill -0 $(cat $PIDFILE) > /dev/null 2>&1; then
+      log_daemon_msg "Restarting $NAME" || true
+
+      # send SIGUSR2 to duplicate unicorn
+      # before_fork will take care of qutting the old one
+      if start-stop-daemon --stop --signal USR2 --quiet --pidfile $PIDFILE --chuid $USER; then
+        log_end_msg 0 || true
+      else
+        log_end_msg 1 || false
+      fi
+
+    else
+      $0 start
+    fi
+    ;;
+
+  full-restart)
+    $0 stop
+    $0 start
+    ;;
+
+  reload)
+    # send SIGHUP to gracefully restart all workers
+    log_daemon_msg "Reloading $NAME" || true
+
+    if start-stop-daemon --stop --signal HUP --quiet --pidfile $PIDFILE --chuid $USER; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+    ;;
+
+  add-worker)
+    # send SIGTTIN to tell unicorn to spawn an additional worker
+    log_daemon_msg "Adding one $NAME worker" || true
+
+    if start-stop-daemon --stop --signal TTIN --quiet --pidfile $PIDFILE --chuid $USER; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+    ;;
+
+  remove-worker)
+    # send SIGTTOU to tell unicorn to stop one worker
+    log_daemon_msg "Removing one $NAME worker" || true
+
+    if start-stop-daemon --stop --signal TTOU --quiet --pidfile $PIDFILE --chuid $USER; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+    ;;
+
+  status)
+    if status_of_proc -p $PIDFILE "$DAEMON" unicorn; then
+      WORKERS=$(ps ax |grep "unicorn worker" |grep -v grep |wc -l)
+      log_action_msg "Current workers: $WORKERS"
+      exit 0
+    else
+      exit 1
+    fi
+    ;;
+  *)
+    echo "Usage: $NAME {start|stop|restart|full-restart|reload|status|add-worker|remove-worker}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
