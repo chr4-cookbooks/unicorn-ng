@@ -51,6 +51,6 @@ action :create do
   service 'unicorn' do
     supports :restart => true, :status => true, :reload => true
     action [ :enable, :start ]
-    only_if "which #{node['unicorn-ng']['service']['bundle']}"
+    only_if "which #{new_resource.bundle}"
   end
 end
