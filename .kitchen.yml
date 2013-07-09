@@ -22,7 +22,7 @@ platforms:
 - name: debian-7
   driver_config:
     box: opscode-debian-7
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.0.0_provisionerless.box
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box
 
 
 suites:
