@@ -20,7 +20,8 @@ listen <%= @listen.inspect %> <%= @backlog ? ", :backlog => #{@backlog.inspect}"
 <% end -%>
 
 <% if @pid %>
-pid <%= @pid.inspect %>
+pidfile = <%= @pid.inspect %>
+pid pidfile
 <% end -%>
 
 <% if @timeout %>

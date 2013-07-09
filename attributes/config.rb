@@ -40,8 +40,9 @@ default['unicorn-ng']['config']['preload_app'] = true
 #
 # Stolen from: https://github.com/blog/517-unicorn
 
+# pidfile will be set to pid in unicorn.rb
 default['unicorn-ng']['config']['before_fork'] =  <<-EOS
-  old_pid = '#{node['unicorn-ng']['config']['pid']}.oldbin'
+  old_pid = "\#{pidfile}.oldbin"
   if File.exists?(old_pid) and server.pid != old_pid
     begin
       Process.kill('QUIT', File.read(old_pid).to_i)
