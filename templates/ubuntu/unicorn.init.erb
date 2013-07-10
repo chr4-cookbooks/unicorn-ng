@@ -10,14 +10,14 @@
 # Description:       starts unicorn using start-stop-daemon
 ### END INIT INFO
 
-export BUNDLE_GEMFILE=<%= @bundle_gemfile %>
-DAEMON=<%= @bundle %>
+export BUNDLE_GEMFILE="<%= @bundle_gemfile %>"
+DAEMON="<%= @bundle %>"
 DAEMON_OPTS="exec unicorn -D -E <%= @environment %> -c <%= @config %>"
-PIDFILE=<%= @pidfile %>
-USER=<%= @user %>
-LANG=<%= @locale %>
-LC_ALL=<%= @locale %>
-LANGUAGE=<%= @locale %>
+PIDFILE="<%= @pidfile %>"
+USER="<%= @user %>"
+LANG="<%= @locale %>"
+LC_ALL="<%= @locale %>"
+LANGUAGE="<%= @locale %>"
 
 NAME=unicorn
 DESC=unicorn
