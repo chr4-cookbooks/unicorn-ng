@@ -116,6 +116,14 @@ If you need a different bundler (e.g. a wrapper from rvm), you can specify it he
 default['unicorn-ng']['service']['bundle'] = '/usr/local/bin/bundle'
 ```
 
+It's also possible (since 0.2.0) to specify a wrapper (like chruby-exec) (disabled by default)
+
+```ruby
+default['unicorn-ng']['service']['wrapper'] = '/usr/local/bin/chruby-exec'
+default['unicorn-ng']['service']['wrapper_opts'] = "#{my_ruby_string} --"
+default['unicorn-ng']['service']['bundle'] = 'bundle'
+```
+
 The RAILS_ENV. Set this to 'production' in your production environment
 
 ```ruby
@@ -257,6 +265,17 @@ unicorn_ng_service '/var/www/example.com/current' do
 end
 ```
 
+An example with chruby-exec
+
+```ruby
+unicorn_ng_service '/var/www/example.com/current' do
+  wrapper       '/usr/local/bin/chruby-exec'
+  wrapper_opts  '1.9.3-p448 --''
+  bundle        'bundle'
+  environment   node.chef_environment
+  user          'deploy'
+end
+```
 
 # Contributing
 
