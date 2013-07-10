@@ -11,8 +11,18 @@
 ### END INIT INFO
 
 export BUNDLE_GEMFILE="<%= @bundle_gemfile %>"
+
 DAEMON="<%= @bundle %>"
 DAEMON_OPTS="exec unicorn -D -E <%= @environment %> -c <%= @config %>"
+
+<% if @wrapper %>
+WRAPPER="<%= @wrapper %>"
+WRAPPER_OPTS="<%= @wrapper_opts %>"
+COMMAND="$WRAPPER -- $WRAPPER_OPTS $DAEMON $DAEMON_OPTS"
+<% else %>
+COMMAND="$DAEMON -- $DAEMON_OPTS"
+<% end -%>
+
 PIDFILE="<%= @pidfile %>"
 USER="<%= @user %>"
 LANG="<%= @locale %>"
@@ -25,8 +35,8 @@ DESC=unicorn
 . /lib/lsb/init-functions
 
 check_daemon() {
-  if [ ! -x $DAEMON ]; then
-    log_action_msg "$DAEMON not found" || true
+  if [ ! -x ${COMMAND%% *} ]; then
+    log_action_msg "${COMMAND%% *} not found" || true
     log_end_msg 1 || false
     exit 1
   fi
@@ -43,7 +53,7 @@ case "$1" in
       exit 0
     fi
 
-    if start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $USER --exec $DAEMON -- $DAEMON_OPTS; then
+    if start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $USER --exec $COMMAND; then
       log_end_msg 0 || true
     else
       log_end_msg 1 || false

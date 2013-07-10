@@ -26,6 +26,8 @@ default['unicorn-ng']['service']['unicorn_config'] = nil
 default['unicorn-ng']['service']['bundle_gemfile'] = nil
 default['unicorn-ng']['service']['pidfile'] = nil
 
+default['unicorn-ng']['service']['wrapper'] = nil
+default['unicorn-ng']['service']['wrapper_opts'] = ''
 default['unicorn-ng']['service']['bundle'] = '/usr/local/bin/bundle'
 default['unicorn-ng']['service']['environment'] = 'development'
 default['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'

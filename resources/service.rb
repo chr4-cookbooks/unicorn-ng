@@ -25,6 +25,8 @@ attribute :rails_root,     :kind_of => String, :name_attribute => true
 attribute :config,         :kind_of => String, :default => node['unicorn-ng']['service']['config']
 attribute :pidfile,        :kind_of => String, :default => node['unicorn-ng']['service']['pidfile']
 attribute :bundle_gemfile, :kind_of => String, :default => node['unicorn-ng']['service']['bundle_gemfile']
+attribute :wrapper,        :kind_of => String, :default => node['unicorn-ng']['service']['wrapper']
+attribute :wrapper_opts,   :kind_of => String, :default => node['unicorn-ng']['service']['wrapper_opts']
 attribute :bundle,         :kind_of => String, :default => node['unicorn-ng']['service']['bundle']
 attribute :environment,    :kind_of => String, :default => node['unicorn-ng']['service']['environment']
 attribute :locale,         :kind_of => String, :default => node['unicorn-ng']['service']['locale']

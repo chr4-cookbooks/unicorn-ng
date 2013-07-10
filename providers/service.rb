@@ -36,6 +36,8 @@ action :create do
       variables :config         => config,
                 :bundle_gemfile => bundle_gemfile,
                 :pidfile        => pidfile,
+                :wrapper        => new_resource.wrapper,
+                :wrapper_opts   => new_resource.wrapper_opts,
                 :bundle         => new_resource.bundle,
                 :environment    => new_resource.environment,
                 :locale         => new_resource.locale,
