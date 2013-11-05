@@ -21,21 +21,21 @@
 actions        :create
 default_action :create
 
-attribute :rails_root,     :kind_of => String, :name_attribute => true
-attribute :config,         :kind_of => String, :default => node['unicorn-ng']['service']['config']
-attribute :pidfile,        :kind_of => String, :default => node['unicorn-ng']['service']['pidfile']
-attribute :bundle_gemfile, :kind_of => String, :default => node['unicorn-ng']['service']['bundle_gemfile']
-attribute :wrapper,        :kind_of => String, :default => node['unicorn-ng']['service']['wrapper']
-attribute :wrapper_opts,   :kind_of => String, :default => node['unicorn-ng']['service']['wrapper_opts']
-attribute :bundle,         :kind_of => String, :default => node['unicorn-ng']['service']['bundle']
-attribute :environment,    :kind_of => String, :default => node['unicorn-ng']['service']['environment']
-attribute :locale,         :kind_of => String, :default => node['unicorn-ng']['service']['locale']
-attribute :user,           :kind_of => String, :default => node['unicorn-ng']['service']['user']
+attribute :rails_root,     kind_of: String, name_attribute: true
+attribute :config,         kind_of: String, default: node['unicorn-ng']['service']['config']
+attribute :pidfile,        kind_of: String, default: node['unicorn-ng']['service']['pidfile']
+attribute :bundle_gemfile, kind_of: String, default: node['unicorn-ng']['service']['bundle_gemfile']
+attribute :wrapper,        kind_of: String, default: node['unicorn-ng']['service']['wrapper']
+attribute :wrapper_opts,   kind_of: String, default: node['unicorn-ng']['service']['wrapper_opts']
+attribute :bundle,         kind_of: String, default: node['unicorn-ng']['service']['bundle']
+attribute :environment,    kind_of: String, default: node['unicorn-ng']['service']['environment']
+attribute :locale,         kind_of: String, default: node['unicorn-ng']['service']['locale']
+attribute :user,           kind_of: String, default: node['unicorn-ng']['service']['user']
 
-attribute :path,           :kind_of => String, :default => node['unicorn-ng']['service']['path']
-attribute :owner,          :kind_of => String, :default => node['unicorn-ng']['service']['owner']
-attribute :group,          :kind_of => String, :default => node['unicorn-ng']['service']['group']
-attribute :mode,           :kind_of => String, :default => node['unicorn-ng']['service']['mode']
-attribute :cookbook,       :kind_of => String, :default => node['unicorn-ng']['service']['cookbook']
-attribute :source,         :kind_of => String, :default => node['unicorn-ng']['service']['source']
-attribute :variables,      :kind_of => Hash,   :default => node['unicorn-ng']['service']['variables']
+attribute :path,           kind_of: String, default: node['unicorn-ng']['service']['path']
+attribute :owner,          kind_of: String, default: node['unicorn-ng']['service']['owner']
+attribute :group,          kind_of: String, default: node['unicorn-ng']['service']['group']
+attribute :mode,           kind_of: String, default: node['unicorn-ng']['service']['mode']
+attribute :cookbook,       kind_of: String, default: node['unicorn-ng']['service']['cookbook']
+attribute :source,         kind_of: String, default: node['unicorn-ng']['service']['source']
+attribute :variables,      kind_of: Hash,   default: node['unicorn-ng']['service']['variables']

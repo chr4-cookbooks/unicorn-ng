@@ -33,15 +33,15 @@ action :create do
     bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
 
     if new_resource.variables.empty?
-      variables :config         => config,
-                :bundle_gemfile => bundle_gemfile,
-                :pidfile        => pidfile,
-                :wrapper        => new_resource.wrapper,
-                :wrapper_opts   => new_resource.wrapper_opts,
-                :bundle         => new_resource.bundle,
-                :environment    => new_resource.environment,
-                :locale         => new_resource.locale,
-                :user           => new_resource.user
+      variables config:         config,
+                bundle_gemfile: bundle_gemfile,
+                pidfile:        pidfile,
+                wrapper:        new_resource.wrapper,
+                wrapper_opts:   new_resource.wrapper_opts,
+                bundle:         new_resource.bundle,
+                environment:    new_resource.environment,
+                locale:         new_resource.locale,
+                user:           new_resource.user
     else
       variables new_resource.variables
     end
@@ -51,7 +51,7 @@ action :create do
 
 
   service 'unicorn' do
-    supports :restart => true, :status => true, :reload => true
+    supports restart: true, status: true, reload: true
     action [ :enable, :start ]
   end
 end

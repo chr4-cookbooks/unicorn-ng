@@ -27,18 +27,18 @@ action :create do
     source    new_resource.source
 
     if new_resource.variables.empty?
-      variables :worker_processes => new_resource.worker_processes,
-                :user => new_resource.user,
-                :working_directory => new_resource.working_directory,
-                :listen => new_resource.listen,
-                :backlog => new_resource.backlog,
-                :pid => new_resource.pid,
-                :timeout => new_resource.timeout,
-                :stderr_path => new_resource.stderr_path,
-                :stdout_path => new_resource.stdout_path,
-                :before_fork => new_resource.before_fork,
-                :after_fork => new_resource.after_fork,
-                :preload_app => new_resource.preload_app
+      variables worker_processes: new_resource.worker_processes,
+                user: new_resource.user,
+                working_directory: new_resource.working_directory,
+                listen: new_resource.listen,
+                backlog: new_resource.backlog,
+                pid: new_resource.pid,
+                timeout: new_resource.timeout,
+                stderr_path: new_resource.stderr_path,
+                stdout_path: new_resource.stdout_path,
+                before_fork: new_resource.before_fork,
+                after_fork: new_resource.after_fork,
+                preload_app: new_resource.preload_app
     else
       variables new_resource.variables
     end
