@@ -39,3 +39,4 @@ attribute :mode,           kind_of: String, default: node['unicorn-ng']['service
 attribute :cookbook,       kind_of: String, default: node['unicorn-ng']['service']['cookbook']
 attribute :source,         kind_of: String, default: node['unicorn-ng']['service']['source']
 attribute :variables,      kind_of: Hash,   default: node['unicorn-ng']['service']['variables']
+attribute :service_name,   kind_of: String, default: node['unicorn-ng']['service']['name']
