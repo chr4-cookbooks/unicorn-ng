@@ -27,6 +27,8 @@ action :create do
     cookbook new_resource.cookbook
     source   new_resource.source
 
+    service_name = new_resource.service_name || 'unicorn'
+
     # default to paths relative to rails_root
     config         = new_resource.config         || "#{new_resource.rails_root}/config/unicorn.rb"
     pidfile        = new_resource.pidfile        || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
@@ -41,7 +43,8 @@ action :create do
                 :bundle         => new_resource.bundle,
                 :environment    => new_resource.environment,
                 :locale         => new_resource.locale,
-                :user           => new_resource.user
+                :user           => new_resource.user,
+                :service_name   => new_resource.service_name
     else
       variables new_resource.variables
     end
@@ -49,8 +52,7 @@ action :create do
 
   new_resource.updated_by_last_action(true) if r.updated_by_last_action?
 
-
-  service 'unicorn' do
+  service new_resource.service_name do
     supports :restart => true, :status => true, :reload => true
     action [ :enable, :start ]
   end
