@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 0.2.1:
+
+* Make initscript independent from users login shell.
+
+  This fixes a bug happening when starting the initscript with a chruby wrapper on a non-bash shell
+
 ## 0.2.0:
 
 * Support wrapper and wrapper_opts
