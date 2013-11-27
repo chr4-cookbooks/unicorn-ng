@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### BEGIN INIT INFO
 # Provides:          unicorn
@@ -12,6 +12,7 @@
 
 export BUNDLE_GEMFILE="<%= @bundle_gemfile %>"
 
+SHELL=/bin/bash
 DAEMON="<%= @bundle %>"
 DAEMON_OPTS="exec unicorn -D -E <%= @environment %> -c <%= @config %>"
 
