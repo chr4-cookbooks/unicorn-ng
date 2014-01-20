@@ -19,9 +19,9 @@ platforms:
     box: opscode-ubuntu-12.04
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
 
-- name: debian-7
+- name: debian-7.1.0
   driver_config:
-    box: opscode-debian-7
+    box: opscode-debian-7.1.0
     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_debian-7.1.0_provisionerless.box
 
 
