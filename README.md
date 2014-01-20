@@ -291,6 +291,8 @@ Contributions are very welcome!
 
 # License and Authors
 
-Authors: Chris Aumann <me@chr4.org>
+Author: Chris Aumann <me@chr4.org>
+
+Contributor: Moshe Bergman <bergmanm@gmail.com>
 
 License: GPLv3
