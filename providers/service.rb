@@ -27,8 +27,6 @@ action :create do
     cookbook new_resource.cookbook
     source   new_resource.source
 
-    service_name = new_resource.service_name || 'unicorn'
-
     # default to paths relative to rails_root
     config         = new_resource.config         || "#{new_resource.rails_root}/config/unicorn.rb"
     pidfile        = new_resource.pidfile        || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
