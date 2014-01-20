@@ -10,7 +10,7 @@ This file is used to list changes made in each version of unicorn.
 
 ## 0.2.0:
 
-* Support wrapper and wrapper_opts
+* Support wrapper and wrapper\_opts
 
   This makes the use of chruby-exec and other wrappers possible.
 
