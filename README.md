@@ -142,10 +142,11 @@ The locale (set by the initscript)
 default['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
 ```
 
-The path where the initscript will be deployed
+Since 0.3.0, you can specify the service name. The initscript will be deployed to `/etc/init.d/SERVICENAME`.
+Defaults to `'unicorn'`
 
 ```ruby
-default['unicorn-ng']['service']['path'] = '/etc/init.d/unicorn'
+default['unicorn-ng']['service']['name'] = 'unicorn'
 ```
 
 Additional options for the initscript (if required)
