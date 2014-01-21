@@ -33,7 +33,6 @@ default['unicorn-ng']['service']['environment'] = 'development'
 default['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
 default['unicorn-ng']['service']['user'] = 'root' # CHANGE ME!
 
-default['unicorn-ng']['service']['path'] = '/etc/init.d/unicorn'
 default['unicorn-ng']['service']['owner'] = 'root'
 default['unicorn-ng']['service']['group'] = 'root'
 default['unicorn-ng']['service']['mode'] = 00755
