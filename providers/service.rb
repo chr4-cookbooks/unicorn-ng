@@ -42,7 +42,8 @@ action :create do
                 environment:    new_resource.environment,
                 locale:         new_resource.locale,
                 user:           new_resource.user,
-                service_name:   new_resource.service_name
+                service_name:   new_resource.service_name,
+                app_root:       new_resource.rails_root
     else
       variables new_resource.variables
     end
