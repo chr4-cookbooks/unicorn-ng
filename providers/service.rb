@@ -19,7 +19,7 @@
 #
 
 action :create do
-  r = template "/etc/inid./#{new_resource.service_name}" do
+  r = template "/etc/init.d/#{new_resource.service_name}" do
     owner new_resource.owner
     group new_resource.group
     mode  new_resource.mode
