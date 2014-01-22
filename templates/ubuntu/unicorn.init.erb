@@ -15,6 +15,7 @@ export BUNDLE_GEMFILE="<%= @bundle_gemfile %>"
 SHELL=/bin/bash
 DAEMON="<%= @bundle %>"
 DAEMON_OPTS="exec unicorn -D -E <%= @environment %> -c <%= @config %>"
+APP_ROOT="<%= @app_root %>"
 
 <% if @wrapper %>
 WRAPPER="<%= @wrapper %>"
@@ -54,7 +55,7 @@ case "$1" in
       exit 0
     fi
 
-    if start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $USER --exec $COMMAND; then
+    if start-stop-daemon --start --quiet --pidfile $PIDFILE --chuid $USER --chdir $APP_ROOT --exec $COMMAND; then
       log_end_msg 0 || true
     else
       log_end_msg 1 || false
