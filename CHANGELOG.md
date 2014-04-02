@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 0.3.0:
+
+* Support `node['unicorn-ng']['service']['name']` attribute, to allow multiple instances
+* Remove `node['unicorn-ng']['service']['path']` in favor of name
+* Add rubocup and foodcritic checks via Travis
+
 ## 0.2.1:
 
 * Make initscript independent from users login shell.
