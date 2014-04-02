@@ -1,5 +1,7 @@
 # unicorn-ng Cookbook
 
+[![Build Status](https://travis-ci.org/chr4-cookbooks/unicorn-ng.svg?branch=master)](https://travis-ci.org/chr4-cookbooks/unicorn-ng)
+
 Manage your [unicorn](http://unicorn.bogomips.org/) application server with this cookbook.
 
 This cookbook provides a decent initscript for Debian/Ubuntu, as well as takes care of the unicorn configuration.
