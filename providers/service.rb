@@ -52,6 +52,6 @@ action :create do
 
   service new_resource.service_name do
     supports restart: true, status: true, reload: true
-    action [ :enable, :start ]
+    action [:enable, :start]
   end
 end

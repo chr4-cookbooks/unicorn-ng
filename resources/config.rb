@@ -33,7 +33,7 @@ attribute :stderr_path,       kind_of: String,  default: node['unicorn-ng']['con
 attribute :stdout_path,       kind_of: String,  default: node['unicorn-ng']['config']['stdout_path']
 attribute :before_fork,       kind_of: String,  default: node['unicorn-ng']['config']['before_fork']
 attribute :after_fork,        kind_of: String,  default: node['unicorn-ng']['config']['after_fork']
-attribute :preload_app,       kind_of: [ TrueClass, FalseClass ], default: node['unicorn-ng']['config']['preload_app']
+attribute :preload_app,       kind_of: [TrueClass, FalseClass], default: node['unicorn-ng']['config']['preload_app']
 
 attribute :owner,             kind_of: String,  default: node['unicorn-ng']['config']['owner']
 attribute :group,             kind_of: String,  default: node['unicorn-ng']['config']['group']
