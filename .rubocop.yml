@@ -6,3 +6,6 @@ HashSyntax:
 
 Documentation:
   Enabled: false
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false
