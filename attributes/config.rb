@@ -27,6 +27,7 @@ default['unicorn-ng']['config']['timeout'] = 60
 default['unicorn-ng']['config']['stderr_path'] = 'log/unicorn.stderr.log'
 default['unicorn-ng']['config']['stdout_path'] = 'log/unicorn.stdout.log'
 default['unicorn-ng']['config']['preload_app'] = true
+default['unicorn-ng']['config']['install_rubygems'] = true
 
 # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
 # immediately start loading up a new version of itself (loaded with a new
