@@ -18,4 +18,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-default['unicorn-ng']['packages'] = 'rubygems'
+case node['platform']
+when 'ubuntu'
+  # Recent Ubuntu installs rubygems with the ruby package
+  if node['platform_version'].to_f >= 14.04
+    default['unicorn-ng']['packages'] = 'ruby'
+  end
+else
+  default['unicorn-ng']['packages'] = 'rubygems'
+end
