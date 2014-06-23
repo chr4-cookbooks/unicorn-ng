@@ -20,7 +20,9 @@ An installed unicorn. Alterantively you can use the install recipe to install it
 
 Furthermore you need to add the following line to your metadata.rb
 
-    depends 'unicorn-ng'
+```ruby
+depends 'unicorn-ng'
+```
 
 
 ## Attributes
