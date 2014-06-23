@@ -25,6 +25,15 @@ Furthermore you need to add the following line to your metadata.rb
 
 ## Attributes
 
+### Packages
+
+To install unicorn, rubygems is required. The cookbook tries to figure out automatically which packages are required depending on your current OS.
+It is possible to override the automatic settings and specify them manually, though
+
+```ruby
+default['unicorn-ng']['packages'] = %w(rubygems)
+```
+
 ### Configuration
 
 Everything in your unicorn.rb can be maintained using attributes.
