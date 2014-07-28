@@ -107,7 +107,7 @@ default['unicorn-ng']['service']['rails_root'] = '/var/www/example.com'
 The following attributes will be set automatically relative to the rails_root, if not specified.
 
 ```ruby
-default['unicorn-ng']['service']['unicorn_config'] = nil
+default['unicorn-ng']['service']['config'] = nil
 default['unicorn-ng']['service']['bundle_gemfile'] = nil
 default['unicorn-ng']['service']['pidfile'] = nil
 ```
