@@ -43,9 +43,11 @@ Consider using the provides LWRPs (see below)
 
 Most importantly, you need to specify the path to your unicorn.rb.
 If this is not specified, the default recipe will do nothing.
+You can also specify a working directory, if needed
 
 ```ruby
 default['unicorn-ng']['config']['config_file'] = '/var/www/examples.com/config/unicorn.rb'
+default['unicorn-ng']['config']['working_directory'] = '/var/www/examples.com'
 ```
 
 This section describes the supported attributes, as well as their default settings.
