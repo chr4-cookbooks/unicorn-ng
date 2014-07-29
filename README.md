@@ -33,7 +33,7 @@ To install unicorn, rubygems is required. The cookbook tries to figure out autom
 It is possible to override the automatic settings and specify them manually, though
 
 ```ruby
-default['unicorn-ng']['packages'] = %w(rubygems)
+node['unicorn-ng']['packages'] = %w(rubygems)
 ```
 
 ### Configuration
@@ -46,21 +46,21 @@ If this is not specified, the default recipe will do nothing.
 You can also specify a working directory, if needed
 
 ```ruby
-default['unicorn-ng']['config']['config_file'] = '/var/www/examples.com/config/unicorn.rb'
-default['unicorn-ng']['config']['working_directory'] = '/var/www/examples.com'
+node['unicorn-ng']['config']['config_file'] = '/var/www/examples.com/config/unicorn.rb'
+node['unicorn-ng']['config']['working_directory'] = '/var/www/examples.com'
 ```
 
 This section describes the supported attributes, as well as their default settings.
 
 ```ruby
-default['unicorn-ng']['config']['worker_processes'] = 1
-default['unicorn-ng']['config']['listen'] = 8080
-default['unicorn-ng']['config']['backlog'] = nil
-default['unicorn-ng']['config']['pid'] = 'tmp/pids/unicorn.pid'
-default['unicorn-ng']['config']['timeout'] = 60
-default['unicorn-ng']['config']['stderr_path'] = 'log/unicorn.stderr.log'
-default['unicorn-ng']['config']['stdout_path'] = 'log/unicorn.stdout.log'
-default['unicorn-ng']['config']['preload_app'] = true
+node['unicorn-ng']['config']['worker_processes'] = 1
+node['unicorn-ng']['config']['listen'] = 8080
+node['unicorn-ng']['config']['backlog'] = nil
+node['unicorn-ng']['config']['pid'] = 'tmp/pids/unicorn.pid'
+node['unicorn-ng']['config']['timeout'] = 60
+node['unicorn-ng']['config']['stderr_path'] = 'log/unicorn.stderr.log'
+node['unicorn-ng']['config']['stdout_path'] = 'log/unicorn.stdout.log'
+node['unicorn-ng']['config']['preload_app'] = true
 
 # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
 # immediately start loading up a new version of itself (loaded with a new
@@ -73,7 +73,7 @@ default['unicorn-ng']['config']['preload_app'] = true
 # Using this method we get 0 downtime deploys.
 #
 # Stolen from: https://github.com/blog/517-unicorn
-default['unicorn-ng']['config']['before_fork'] =  <<-EOS
+node['unicorn-ng']['config']['before_fork'] =  <<-EOS
   old_pid = '#{node['unicorn-ng']['config']['pid']}.oldbin'
   if File.exists?(old_pid) and server.pid != old_pid
     begin
@@ -88,7 +88,7 @@ default['unicorn-ng']['config']['before_fork'] =  <<-EOS
   end
 EOS
 
-default['unicorn-ng']['config']['after_fork'] =  <<-EOS
+node['unicorn-ng']['config']['after_fork'] =  <<-EOS
   if defined?(ActiveRecord::Base)
     ActiveRecord::Base.connection_handler.verify_active_connections!
   end
@@ -98,12 +98,12 @@ EOS
 Furthermore, you can define more advanced settings, if needed
 
 ```ruby
-default['unicorn-ng']['config']['owner'] = 'root'
-default['unicorn-ng']['config']['group'] = 'root'
-default['unicorn-ng']['config']['mode'] = 00644
-default['unicorn-ng']['config']['cookbook'] = 'unicorn-ng'
-default['unicorn-ng']['config']['source'] = 'unicorn.rb.erb'
-default['unicorn-ng']['config']['variables'] = {}
+node['unicorn-ng']['config']['owner'] = 'root'
+node['unicorn-ng']['config']['group'] = 'root'
+node['unicorn-ng']['config']['mode'] = 00644
+node['unicorn-ng']['config']['cookbook'] = 'unicorn-ng'
+node['unicorn-ng']['config']['source'] = 'unicorn.rb.erb'
+node['unicorn-ng']['config']['variables'] = {}
 ```
 
 ### Service
@@ -114,65 +114,65 @@ Analogue to the configuration, you need to specify the path to your rails applic
 If this is not specified, the default recipe will do nothing.
 
 ```ruby
-default['unicorn-ng']['service']['rails_root'] = '/var/www/example.com'
+node['unicorn-ng']['service']['rails_root'] = '/var/www/example.com'
 ```
 
 The following attributes will be set automatically relative to the rails_root, if not specified.
 
 ```ruby
-default['unicorn-ng']['service']['config'] = nil
-default['unicorn-ng']['service']['bundle_gemfile'] = nil
-default['unicorn-ng']['service']['pidfile'] = nil
+node['unicorn-ng']['service']['config'] = nil
+node['unicorn-ng']['service']['bundle_gemfile'] = nil
+node['unicorn-ng']['service']['pidfile'] = nil
 ```
 
 If you need a different bundler (e.g. a wrapper from rvm), you can specify it here
 
 ```ruby
-default['unicorn-ng']['service']['bundle'] = '/usr/local/bin/bundle'
+node['unicorn-ng']['service']['bundle'] = '/usr/local/bin/bundle'
 ```
 
 It's also possible (since 0.2.0) to specify a wrapper (like chruby-exec) (disabled by default)
 
 ```ruby
-default['unicorn-ng']['service']['wrapper'] = '/usr/local/bin/chruby-exec'
-default['unicorn-ng']['service']['wrapper_opts'] = "#{my_ruby_string} --"
-default['unicorn-ng']['service']['bundle'] = 'bundle'
+node['unicorn-ng']['service']['wrapper'] = '/usr/local/bin/chruby-exec'
+node['unicorn-ng']['service']['wrapper_opts'] = "#{my_ruby_string} --"
+node['unicorn-ng']['service']['bundle'] = 'bundle'
 ```
 
 The RAILS_ENV. Set this to 'production' in your production environment
 
 ```ruby
-default['unicorn-ng']['service']['environment'] = 'development'
+node['unicorn-ng']['service']['environment'] = 'development'
 ```
 
 The user unicorn runs at. **NOTE: THIS SHOULD BE CHANGED TO AN UNPRIVILEDGED USER**
 
 ```ruby
-default['unicorn-ng']['service']['user'] = 'root' # CHANGE ME! (e.g. 'www-data')
+node['unicorn-ng']['service']['user'] = 'root' # CHANGE ME! (e.g. 'www-data')
 ```
 
 The locale (set by the initscript)
 
 ```ruby
-default['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
+node['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
 ```
 
 Since 0.3.0, you can specify the service name. The initscript will be deployed to `/etc/init.d/SERVICENAME`.
 Defaults to `'unicorn'`
 
 ```ruby
-default['unicorn-ng']['service']['name'] = 'unicorn'
+node['unicorn-ng']['service']['name'] = 'unicorn'
 ```
 
 Additional options for the initscript (if required)
 
 ```ruby
-default['unicorn-ng']['service']['owner'] = 'root'
-default['unicorn-ng']['service']['group'] = 'root'
-default['unicorn-ng']['service']['mode'] = 00755
-default['unicorn-ng']['service']['cookbook'] = 'unicorn-ng'
-default['unicorn-ng']['service']['source'] = 'unicorn.init.erb'
-default['unicorn-ng']['service']['variables'] = {}
+node['unicorn-ng']['service']['owner'] = 'root'
+node['unicorn-ng']['service']['group'] = 'root'
+node['unicorn-ng']['service']['mode'] = 00755
+node['unicorn-ng']['service']['cookbook'] = 'unicorn-ng'
+node['unicorn-ng']['service']['source'] = 'unicorn.init.erb'
+node['unicorn-ng']['service']['variables'] = {}
 ```
 
 
@@ -184,8 +184,8 @@ Configures unicorn.rb configuration, as well as the unicorn initscript according
 Unless you specify at least one of the following attributes, this recipe will do nothing.
 
 ```ruby
-default['unicorn-ng']['config']['config_file'] # path to your unicorn.rb (will configure unicorn.rb)
-default['unicorn-ng']['service']['rails_root'] # path to your rails_root (will configure the unicorn service)
+node['unicorn-ng']['config']['config_file'] # path to your unicorn.rb (will configure unicorn.rb)
+node['unicorn-ng']['service']['rails_root'] # path to your rails_root (will configure the unicorn service)
 ```
 
 ### install
