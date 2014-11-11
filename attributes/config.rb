@@ -53,13 +53,13 @@ default['unicorn-ng']['config']['before_fork'] =  <<-EOS
   end
 
   if defined?(ActiveRecord::Base)
-    ActiveRecord::Base.connection_handler.clear_all_connections!
+    ActiveRecord::Base.connection.disconnect!
   end
 EOS
 
 default['unicorn-ng']['config']['after_fork'] =  <<-EOS
   if defined?(ActiveRecord::Base)
-    ActiveRecord::Base.connection_handler.verify_active_connections!
+    ActiveRecord::Base.establish_connection
   end
 EOS
 
