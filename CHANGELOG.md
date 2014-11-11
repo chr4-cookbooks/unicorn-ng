@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 1.0.0:
+
+- Adapt `before_fork` and `after_fork` statements to be rails 4 compatible:
+  See: 5c96507. It should be still working with rails 3.
+
+
 ## 0.3.0:
 
 * Support `node['unicorn-ng']['service']['name']` attribute, to allow multiple instances
