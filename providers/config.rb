@@ -18,8 +18,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+use_inline_resources
 action :create do
-  r = template new_resource.path do
+  template new_resource.path do
     owner     new_resource.owner
     group     new_resource.group
     mode      new_resource.mode
@@ -43,6 +44,4 @@ action :create do
       variables new_resource.variables
     end
   end
-
-  new_resource.updated_by_last_action(true) if r.updated_by_last_action?
 end
