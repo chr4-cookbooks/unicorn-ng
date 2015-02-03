@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-
+use_inline_resources
 action :create do
-  r = template "/etc/init.d/#{new_resource.service_name}" do
+  template "/etc/init.d/#{new_resource.service_name}" do
     owner new_resource.owner
     group new_resource.group
     mode  new_resource.mode
@@ -47,8 +47,6 @@ action :create do
       variables new_resource.variables
     end
   end
-
-  new_resource.updated_by_last_action(true) if r.updated_by_last_action?
 
   service new_resource.service_name do
     supports restart: true, status: true, reload: true
