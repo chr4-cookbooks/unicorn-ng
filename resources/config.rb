@@ -22,6 +22,7 @@ actions        :create
 default_action :create
 
 attribute :path,              kind_of: String,  name_attribute: true
+attribute :prescript,         kind_of: String,  default: node['unicorn-ng']['config']['prescript']
 attribute :worker_processes,  kind_of: Integer, default: node['unicorn-ng']['config']['worker_processes']
 attribute :user,              kind_of: String,  default: node['unicorn-ng']['config']['user']
 attribute :working_directory, kind_of: String,  default: node['unicorn-ng']['config']['working_directory']

@@ -95,6 +95,18 @@ node['unicorn-ng']['config']['after_fork'] =  <<-EOS
 EOS
 ```
 
+It's also possible to add arbitrary commands to the top of `unicorn.rb` in case you need something
+like a special `require` statement.
+
+```ruby
+node['unicorn-ng']['config']['prescript'] = <<-EOS
+  # Load the GELF logging extension
+  require 'gelf'
+  logger ::GELF::Logger.new('graylog', 1234, 'LAN', {facility: 'unicorn'})
+EOS
+
+```
+
 Furthermore, you can define more advanced settings, if needed
 
 ```ruby

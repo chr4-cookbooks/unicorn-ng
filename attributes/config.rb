@@ -20,6 +20,7 @@
 
 default['unicorn-ng']['config']['config_file'] = nil
 default['unicorn-ng']['config']['working_directory'] = nil
+default['unicorn-ng']['config']['prescript'] = nil
 default['unicorn-ng']['config']['worker_processes'] = 1
 default['unicorn-ng']['config']['listen'] = 8080
 default['unicorn-ng']['config']['backlog'] = nil

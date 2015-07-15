@@ -28,7 +28,8 @@ action :create do
     source    new_resource.source
 
     if new_resource.variables.empty?
-      variables worker_processes: new_resource.worker_processes,
+      variables prescript: new_resource.prescript,
+                worker_processes: new_resource.worker_processes,
                 user: new_resource.user,
                 working_directory: new_resource.working_directory,
                 listen: new_resource.listen,

@@ -3,6 +3,10 @@
 # Local modifications will be overwritten.
 #
 
+<% if @prescript %>
+<%= @prescript %>
+<% end -%>
+
 <% if @worker_processes %>
 worker_processes <%= @worker_processes.inspect %>
 <% end -%>
