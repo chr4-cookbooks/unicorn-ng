@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 1.1.0:
+
+- Add `prescript` attribute, to inject arbitrary commands at the top of `unicorn.rb`
+
+
 ## 1.0.0:
 
 - Adapt `before_fork` and `after_fork` statements to be rails 4 compatible:
