@@ -32,6 +32,7 @@ default['unicorn-ng']['service']['bundle'] = '/usr/local/bin/bundle'
 default['unicorn-ng']['service']['environment'] = 'development'
 default['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
 default['unicorn-ng']['service']['user'] = 'root' # CHANGE ME!
+default['unicorn-ng']['service']['gem_home'] = nil
 
 default['unicorn-ng']['service']['owner'] = 'root'
 default['unicorn-ng']['service']['group'] = 'root'
