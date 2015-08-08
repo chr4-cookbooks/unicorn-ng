@@ -25,5 +25,5 @@ end
 
 unicorn_ng_service 'default' do
   rails_root node['unicorn-ng']['service']['rails_root']
-  only_if  { node['unicorn-ng']['service']['rails_root'] }
+  only_if { node['unicorn-ng']['service']['rails_root'] }
 end

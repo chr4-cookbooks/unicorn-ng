@@ -28,8 +28,8 @@ action :create do
     source   new_resource.source
 
     # default to paths relative to rails_root
-    config         = new_resource.config         || "#{new_resource.rails_root}/config/unicorn.rb"
-    pidfile        = new_resource.pidfile        || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
+    config         = new_resource.config || "#{new_resource.rails_root}/config/unicorn.rb"
+    pidfile        = new_resource.pidfile || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
     bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
 
     if new_resource.variables.empty?
