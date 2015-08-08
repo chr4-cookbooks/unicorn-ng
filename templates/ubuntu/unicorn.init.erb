@@ -11,6 +11,7 @@
 ### END INIT INFO
 
 export BUNDLE_GEMFILE="<%= @bundle_gemfile %>"
+<%= "export GEM_HOME='#{@gem_home}'" if @gem_home %>
 
 SHELL=/bin/bash
 DAEMON="<%= @bundle %>"

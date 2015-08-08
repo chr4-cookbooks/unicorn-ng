@@ -151,6 +151,12 @@ node['unicorn-ng']['service']['wrapper_opts'] = "#{my_ruby_string} --"
 node['unicorn-ng']['service']['bundle'] = 'bundle'
 ```
 
+In the same way, you can set your custom `GEM_HOME` path:
+
+```ruby
+node['unicorn-ng']['service']['gem_home'] = '/usr/local/ruby/gems'
+```
+
 The RAILS_ENV. Set this to 'production' in your production environment
 
 ```ruby

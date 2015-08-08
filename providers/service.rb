@@ -42,7 +42,8 @@ action :create do
                 environment:    new_resource.environment,
                 locale:         new_resource.locale,
                 user:           new_resource.user,
-                service_name:   new_resource.service_name
+                service_name:   new_resource.service_name,
+                gem_home:       new_resource.gem_home
     else
       variables new_resource.variables
     end
