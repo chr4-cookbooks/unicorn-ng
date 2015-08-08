@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 1.1.1:
+
+- Add `GEM_HOME` support.
+
 ## 1.1.0:
 
 - Add `prescript` attribute, to inject arbitrary commands at the top of `unicorn.rb`
