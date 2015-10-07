@@ -10,7 +10,7 @@ Features
 
 * Provides a decent initscript for Debian/Ubuntu
 * Automatically takes care of ActiveRecord connections (if ActiveRecord is used)
-* Hightly configureable for your needs
+* Hightly configurable for your needs
 * Use either a system-wide installed unicorn, or one that gets deployed with your application
 
 
