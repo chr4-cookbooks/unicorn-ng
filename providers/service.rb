@@ -43,6 +43,7 @@ action :create do
                 locale:         new_resource.locale,
                 user:           new_resource.user,
                 service_name:   new_resource.service_name,
+                chdir:          new_resource.chdir,
                 gem_home:       new_resource.gem_home
     else
       variables new_resource.variables

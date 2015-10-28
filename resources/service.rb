@@ -31,6 +31,7 @@ attribute :bundle,         kind_of: String, default: node['unicorn-ng']['service
 attribute :environment,    kind_of: String, default: node['unicorn-ng']['service']['environment']
 attribute :locale,         kind_of: String, default: node['unicorn-ng']['service']['locale']
 attribute :user,           kind_of: String, default: node['unicorn-ng']['service']['user']
+attribute :chdir,          kind_of: String, default: node['unicorn-ng']['service']['chdir']
 attribute :gem_home,       kind_of: String, default: node['unicorn-ng']['service']['gem_home']
 
 attribute :owner,          kind_of: String, default: node['unicorn-ng']['service']['owner']
