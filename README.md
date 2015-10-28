@@ -157,6 +157,13 @@ In the same way, you can set your custom `GEM_HOME` path:
 node['unicorn-ng']['service']['gem_home'] = '/usr/local/ruby/gems'
 ```
 
+Since version `1.2.1`, you can specify the `--chdir` flag for `start-stop-daemon`, which results in
+a chdir before the app starts
+
+```ruby
+node['unicorn-ng']['service']['chdir'] = '/home/myapp'
+```
+
 The RAILS_ENV. Set this to 'production' in your production environment
 
 ```ruby
