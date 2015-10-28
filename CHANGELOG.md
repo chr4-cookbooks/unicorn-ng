@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 1.2.1:
+
+- Add support to specify a working directory using the `chdir` attribute
+
 ## 1.1.1:
 
 - Add `GEM_HOME` support.
