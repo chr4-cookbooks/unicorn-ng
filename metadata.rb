@@ -4,6 +4,8 @@ maintainer_email 'me@chr4.org'
 license          'GNU Public License 3.0'
 description      'Installs/Configures unicorn'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+source_url       'https://github.com/chr4-cookbooks/unicorn-ng' if respond_to?(:source_url)
+issues_url       'https://github.com/chr4-cookbooks/unicorn-ng/issues' if respond_to?(:issues_url)
 version          '1.2.2'
 
 recipe           'unicorn-ng', 'Configures unicorn.rb and sets up a service according to attributes'
