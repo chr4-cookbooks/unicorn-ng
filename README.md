@@ -107,7 +107,7 @@ EOS
 
 ```
 
-Furthermore, you can define more advanced settings, if needed
+Furthermore, you can define more advanced settings, if needed (ignored when using systemd)
 
 ```ruby
 node['unicorn-ng']['config']['owner'] = 'root'
@@ -182,14 +182,21 @@ The locale (set by the initscript)
 node['unicorn-ng']['service']['locale'] = 'en_US.UTF-8'
 ```
 
-Since 0.3.0, you can specify the service name. The initscript will be deployed to `/etc/init.d/SERVICENAME`.
+Use systemd (defaults to true on Ubuntu >= 15.04)
+NOTE: This is recommended on machines with systemd, as it's a way cleaner solution. However, the 'status', 'add-worker' and 'remove-worker' actions are not supported on systemd. Furthermore, systemd `restart` equals former `full-restart`, `reload` is behaving like former `restart` and the former `reload` was dropped.
+
+```ruby
+node['unicorn-ng']['service']['systemd'] = false
+```
+
+Since 0.3.0, you can specify the service name. The initscript will be deployed to `/etc/init.d/$SERVICENAME`, or, when systemd is used, to `/etc/systemd/system/$SERVICENAME.service`
 Defaults to `'unicorn'`
 
 ```ruby
 node['unicorn-ng']['service']['name'] = 'unicorn'
 ```
 
-Additional options for the initscript (if required)
+Additional options for the initscript (if required, ignored when using systemd)
 
 ```ruby
 node['unicorn-ng']['service']['owner'] = 'root'
