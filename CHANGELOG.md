@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 2.0.0:
+
+- Add systemd support. Automatically use it on recent Ubuntu machines.
+  See `systemd` attribute for service provider for details.
+
 ## 1.2.2:
 
 - Fix some warnings for upcoming Chef-13 release
