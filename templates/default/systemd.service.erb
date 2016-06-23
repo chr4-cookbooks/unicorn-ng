@@ -1,0 +1,25 @@
+[Unit]
+Description=Unicorn web server
+
+[Service]
+Type=simple
+Restart=on-failure
+Environment=BUNDLE_GEMFILE=<%= @bundle_gemfile %> LANG=<%= @locale %> LC_ALL=<%= @locale %> LANGUAGE=<%= @locale %> <%= "GEM_HOME=#{@gem_home}" if @gem_home %>
+User=<%= @user %>
+WorkingDirectory=<%= @chdir %>
+PIDFile=<%= @pidfile %>
+
+<% if @wrapper %>
+ExecStart=<%= @wrapper %> -- <%= @wrapper_opts %> <%= @bundle %> exec unicorn -E <%= @environment %> -c <%= @config %>
+<% else %>
+ExecStart=<%= @bundle %> exec unicorn -E <%= @environment %> -c <%= @config %>
+<% end -%>
+
+; Send SIGUSR2 to duplicate unicorn.
+; The "before_fork" handler will take care of quitting the old one.
+ExecReload=/bin/kill -SIGUSR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+; vim: ft=dosini

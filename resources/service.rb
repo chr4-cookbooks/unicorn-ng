@@ -41,3 +41,5 @@ attribute :cookbook,       kind_of: String,            default: node['unicorn-ng
 attribute :source,         kind_of: String,            default: node['unicorn-ng']['service']['source']
 attribute :variables,      kind_of: Hash,              default: node['unicorn-ng']['service']['variables']
 attribute :service_name,   kind_of: String,            default: node['unicorn-ng']['service']['name']
+
+attribute :systemd,        kind_of: [TrueClass, FalseClass], default: node['unicorn-ng']['service']['systemd']

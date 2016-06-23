@@ -19,6 +19,31 @@
 #
 use_inline_resources
 action :create do
+  # Default to paths relative to rails_root
+  config         = new_resource.config || "#{new_resource.rails_root}/config/unicorn.rb"
+  pidfile        = new_resource.pidfile || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
+  bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
+
+  template "/etc/systemd/system/#{new_resource.service_name}.service" do
+    mode     00644
+    cookbook 'unicorn-ng'
+    source   'systemd.service.erb'
+    variables config:         config,
+              bundle_gemfile: bundle_gemfile,
+              pidfile:        pidfile,
+              wrapper:        new_resource.wrapper,
+              wrapper_opts:   new_resource.wrapper_opts,
+              bundle:         new_resource.bundle,
+              environment:    new_resource.environment,
+              locale:         new_resource.locale,
+              user:           new_resource.user,
+              service_name:   new_resource.service_name,
+              chdir:          new_resource.chdir,
+              gem_home:       new_resource.gem_home
+
+    only_if { new_resource.systemd }
+  end
+
   template "/etc/init.d/#{new_resource.service_name}" do
     owner new_resource.owner
     group new_resource.group
@@ -26,11 +51,6 @@ action :create do
 
     cookbook new_resource.cookbook
     source   new_resource.source
-
-    # default to paths relative to rails_root
-    config         = new_resource.config || "#{new_resource.rails_root}/config/unicorn.rb"
-    pidfile        = new_resource.pidfile || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
-    bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
 
     if new_resource.variables.empty?
       variables config:         config,
@@ -48,6 +68,8 @@ action :create do
     else
       variables new_resource.variables
     end
+
+    not_if { new_resource.systemd }
   end
 
   service new_resource.service_name do

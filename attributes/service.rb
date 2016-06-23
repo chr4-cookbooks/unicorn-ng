@@ -42,3 +42,6 @@ default['unicorn-ng']['service']['cookbook'] = 'unicorn-ng'
 default['unicorn-ng']['service']['source'] = 'unicorn.init.erb'
 default['unicorn-ng']['service']['variables'] = {}
 default['unicorn-ng']['service']['name'] = 'unicorn'
+
+# Use systemd on newer Ubuntu systems
+default['unicorn-ng']['service']['systemd'] = node['platform_version'].to_f >= 15.04
