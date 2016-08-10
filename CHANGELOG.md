@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of unicorn.
 
+## 2.0.1:
+- Automatically run `systemctl daemon-reload` upon changes of unicorn.service
+
 ## 2.0.0:
 - Add systemd support. Automatically use it on recent Ubuntu machines.
   See `systemd` attribute for service provider for details.
