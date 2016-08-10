@@ -31,7 +31,7 @@ action :create do
   end
 
   template "/etc/systemd/system/#{new_resource.service_name}.service" do
-    mode     00644
+    mode     0o644
     cookbook 'unicorn-ng'
     source   'systemd.service.erb'
     variables config:         config,

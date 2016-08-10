@@ -66,7 +66,7 @@ EOS
 
 default['unicorn-ng']['config']['owner'] = 'root'
 default['unicorn-ng']['config']['group'] = 'root'
-default['unicorn-ng']['config']['mode'] = 00644
+default['unicorn-ng']['config']['mode'] = 0o644
 default['unicorn-ng']['config']['cookbook'] = 'unicorn-ng'
 default['unicorn-ng']['config']['source'] = 'unicorn.rb.erb'
 default['unicorn-ng']['config']['variables'] = {}

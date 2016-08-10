@@ -37,7 +37,7 @@ default['unicorn-ng']['service']['gem_home'] = nil
 
 default['unicorn-ng']['service']['owner'] = 'root'
 default['unicorn-ng']['service']['group'] = 'root'
-default['unicorn-ng']['service']['mode'] = 00755
+default['unicorn-ng']['service']['mode'] = 0o755
 default['unicorn-ng']['service']['cookbook'] = 'unicorn-ng'
 default['unicorn-ng']['service']['source'] = 'unicorn.init.erb'
 default['unicorn-ng']['service']['variables'] = {}
