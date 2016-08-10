@@ -25,7 +25,8 @@ action :create do
   bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
 
   # Make systemd learn new configuration files
-  execute 'systemctl daemon-reload' do
+  execute "daemon-reload for #{new_service.service_name}" do
+    command 'systemctl daemon-reload'
     action :nothing
     only_if { new_resource.systemd }
   end
@@ -48,7 +49,7 @@ action :create do
               gem_home:       new_resource.gem_home
 
     # Run daemon-reload when service is changed
-    notifies :run, 'execute[systemctl daemon-reload]', :immediately
+    notifies :run, "execute[daemon-reload for #{new_service.service_name}]", :immediately
 
     only_if { new_resource.systemd }
   end
