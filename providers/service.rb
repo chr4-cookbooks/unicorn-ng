@@ -24,6 +24,12 @@ action :create do
   pidfile        = new_resource.pidfile || "#{new_resource.rails_root}/tmp/pids/unicorn.pid"
   bundle_gemfile = new_resource.bundle_gemfile || "#{new_resource.rails_root}/Gemfile"
 
+  # Make systemd learn new configuration files
+  execute 'systemctl daemon-reload' do
+    action :nothing
+    only_if { new_resource.systemd }
+  end
+
   template "/etc/systemd/system/#{new_resource.service_name}.service" do
     mode     00644
     cookbook 'unicorn-ng'
@@ -40,6 +46,9 @@ action :create do
               service_name:   new_resource.service_name,
               chdir:          new_resource.chdir,
               gem_home:       new_resource.gem_home
+
+    # Run daemon-reload when service is changed
+    notifies :run, 'execute[systemctl daemon-reload]', :immediately
 
     only_if { new_resource.systemd }
   end
